@@ -1,3 +1,4 @@
+/* Grundlegendes Layout */
 body {
     font-family: Arial, sans-serif;
     display: flex;
@@ -12,10 +13,11 @@ body {
 
 .container {
     text-align: center;
-    background-color: rgba(255, 255, 255, 0.8); /* Transparente Box */
+    background-color: rgba(255, 255, 255, 0.8); /* Leicht transparente Box */
     padding: 20px;
     border-radius: 10px;
     max-width: 90%;
+    box-sizing: border-box; /* Stellt sicher, dass die Polsterung korrekt gehandhabt wird */
 }
 
 #puzzle-container {
@@ -30,6 +32,7 @@ body {
     flex-wrap: wrap;
     justify-content: center;
     margin-bottom: 20px;
+    max-width: 100%; /* Stellt sicher, dass die Wörter nicht über den Bildschirm hinausgehen */
 }
 
 .word {
@@ -40,7 +43,7 @@ body {
     border-radius: 5px;
     cursor: grab;
     user-select: none;
-    white-space: nowrap; /* Wörter sollen nicht umbrechen */
+    white-space: nowrap; /* Lange Wörter sollen nicht umbrechen */
 }
 
 #drop-zone-container {
@@ -48,6 +51,7 @@ body {
     flex-wrap: wrap;
     justify-content: center;
     margin-bottom: 20px;
+    max-width: 100%; /* Drop-Zonen bleiben in der Bildschirmbreite */
 }
 
 .drop-zone {
@@ -105,5 +109,9 @@ button {
     button {
         padding: 6px 10px;
         font-size: 12px;
+    }
+
+    #puzzle-container {
+        max-width: 100%;
     }
 }
