@@ -1,3 +1,4 @@
+/* Grundlegendes Layout */
 body {
     font-family: Arial, sans-serif;
     display: flex;
@@ -5,7 +6,7 @@ body {
     align-items: center;
     height: 100vh;
     margin: 0;
-    background-image: url('background-image.jpg'); /* Hintergrundbild */
+    background-image: url('background-image.jpg'); /* Ersetze durch deinen Bildpfad */
     background-size: cover;
     background-position: center;
 }
@@ -15,6 +16,8 @@ body {
     background-color: rgba(255, 255, 255, 0.8); /* Leicht transparente Box */
     padding: 20px;
     border-radius: 10px;
+    max-width: 90%; /* Maximale Breite für kleinere Bildschirme */
+    box-sizing: border-box; /* Box-Größenkorrektur */
 }
 
 #puzzle-container {
@@ -27,6 +30,7 @@ body {
 #words {
     display: flex;
     flex-wrap: wrap;
+    justify-content: center;
     margin-bottom: 20px;
 }
 
@@ -42,6 +46,7 @@ body {
 
 #drop-zone-container {
     display: flex;
+    flex-wrap: wrap;
     justify-content: center;
     margin-bottom: 20px;
 }
@@ -54,7 +59,7 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    margin: 0 5px;
+    margin: 10px 5px;
     background-color: #f8f9fa;
 }
 
@@ -62,9 +67,45 @@ button {
     padding: 10px 20px;
     font-size: 16px;
     cursor: pointer;
+    margin-top: 10px;
 }
 
 #feedback {
     font-size: 18px;
     margin-top: 15px;
+}
+
+/* Media Queries für kleinere Geräte */
+@media (max-width: 768px) {
+    .word {
+        padding: 8px 10px; /* Kleinere Wörter auf mobilen Geräten */
+        font-size: 14px;
+    }
+
+    .drop-zone {
+        width: 80px;
+        height: 60px;
+    }
+
+    button {
+        padding: 8px 15px;
+        font-size: 14px;
+    }
+}
+
+@media (max-width: 480px) {
+    .word {
+        padding: 6px 8px; /* Noch kleinere Wörter für sehr kleine Geräte */
+        font-size: 12px;
+    }
+
+    .drop-zone {
+        width: 70px;
+        height: 50px;
+    }
+
+    button {
+        padding: 6px 10px;
+        font-size: 12px;
+    }
 }
