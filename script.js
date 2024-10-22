@@ -36,16 +36,18 @@ let currentSentence = {};
 let draggedElement = null;
 
 // Füge den Ton hinzu
-const dropSound = new Audio('drop-sound.mp3'); // Stelle sicher, dass du den Pfad zu deiner Audiodatei richtig setzt
+const dropSound = new Audio('drop-sound.mp3'); // Pfad zu deiner Audiodatei
 
 function playSound() {
     dropSound.play();
 }
 
+// Zufällige Reihenfolge für die Wörter
 function shuffle(array) {
     return array.sort(() => Math.random() - 0.5);
 }
 
+// Puzzle laden
 function loadPuzzle() {
     currentSentence = sentences[Math.floor(Math.random() * sentences.length)];
     const wordsContainer = document.getElementById('words');
@@ -55,7 +57,7 @@ function loadPuzzle() {
 
     const shuffledWords = shuffle([...currentSentence.words]);
 
-    // Erstelle die Wörter
+    // Wörter erstellen und Drag-and-Drop-Event hinzufügen
     shuffledWords.forEach(word => {
         const wordDiv = document.createElement('div');
         wordDiv.textContent = word;
@@ -63,10 +65,11 @@ function loadPuzzle() {
         wordDiv.setAttribute('draggable', true);
         wordDiv.addEventListener('dragstart', dragStart);
         wordDiv.addEventListener('dragend', dragEnd);
+        addTouchListeners(wordDiv); // Touch-Unterstützung hinzufügen
         wordsContainer.appendChild(wordDiv);
     });
 
-    // Erstelle die Drop-Zonen
+    // Drop-Zonen erstellen
     currentSentence.words.forEach(() => {
         const dropZone = document.createElement('div');
         dropZone.classList.add('drop-zone');
@@ -76,15 +79,16 @@ function loadPuzzle() {
     });
 }
 
+// Drag-and-Drop-Funktionen
 function dragStart(event) {
     draggedElement = event.target;
     setTimeout(() => {
-        event.target.style.visibility = 'hidden'; // Mache das gezogene Wort unsichtbar
+        event.target.style.visibility = 'hidden'; // Wort während des Ziehens unsichtbar machen
     }, 0);
 }
 
 function dragEnd(event) {
-    event.target.style.visibility = 'visible'; // Zeige das Wort wieder an
+    event.target.style.visibility = 'visible'; // Wort wieder sichtbar machen
     draggedElement = null;
 }
 
@@ -95,7 +99,7 @@ function allowDrop(event) {
 function drop(event) {
     event.preventDefault();
 
-    // Überprüfe, ob die Drop-Zone leer ist
+    // Wenn die Drop-Zone leer ist, füge das gezogene Wort hinzu
     if (event.target.classList.contains('drop-zone') && !event.target.firstChild) {
         const wordDiv = document.createElement('div');
         wordDiv.textContent = draggedElement.textContent;
@@ -103,20 +107,35 @@ function drop(event) {
         wordDiv.setAttribute('draggable', true);
         wordDiv.addEventListener('dragstart', dragStart);
         wordDiv.addEventListener('dragend', dragEnd);
+        addTouchListeners(wordDiv); // Touch-Unterstützung für neu erstellte Elemente
         event.target.appendChild(wordDiv);
 
-        // Spiele den Ton ab, wenn das Wort abgelegt wird
+        // Spiele den Ton ab
         playSound();
 
         // Entferne das gezogene Wort aus dem ursprünglichen Container
         draggedElement.remove();
     } else if (event.target.classList.contains('word')) {
-        // Wenn das Ziel bereits ein Wort enthält, schiebe das Wort in die ursprüngliche Liste zurück
+        // Wenn bereits ein Wort vorhanden ist, verschiebe es in den ursprünglichen Container zurück
         const wordsContainer = document.getElementById('words');
         wordsContainer.appendChild(event.target);
     }
 }
 
+// Touch-Unterstützung für mobile Geräte
+function addTouchListeners(wordDiv) {
+    wordDiv.addEventListener('touchstart', function (e) {
+        dragStart(e);
+    });
+    wordDiv.addEventListener('touchmove', function (e) {
+        e.preventDefault(); // Verhindere das Scrollen während des Ziehens
+    });
+    wordDiv.addEventListener('touchend', function (e) {
+        dragEnd(e);
+    });
+}
+
+// Satz überprüfen
 function checkSentence() {
     const feedback = document.getElementById('feedback');
     const dropZoneContainer = document.getElementById('drop-zone-container');
@@ -132,11 +151,12 @@ function checkSentence() {
     }
 }
 
+// Eventlistener für Buttons
 document.getElementById('check-btn').addEventListener('click', checkSentence);
-
 document.getElementById('next-btn').addEventListener('click', () => {
     document.getElementById('feedback').textContent = '';
     loadPuzzle();
 });
 
+// Seite laden
 window.onload = loadPuzzle;
