@@ -1,0 +1,70 @@
+body {
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    background-image: url('background-image.jpg'); /* Hintergrundbild */
+    background-size: cover;
+    background-position: center;
+}
+
+.container {
+    text-align: center;
+    background-color: rgba(255, 255, 255, 0.8); /* Leicht transparente Box */
+    padding: 20px;
+    border-radius: 10px;
+}
+
+#puzzle-container {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#words {
+    display: flex;
+    flex-wrap: wrap;
+    margin-bottom: 20px;
+}
+
+.word {
+    padding: 10px 15px;
+    margin: 5px;
+    background-color: #dff0d8;
+    border: 1px solid #4cae4c;
+    border-radius: 5px;
+    cursor: grab;
+    user-select: none;
+}
+
+#drop-zone-container {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+.drop-zone {
+    width: 100px;
+    height: 70px;
+    border: 2px dashed #4cae4c;
+    border-radius: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 5px;
+    background-color: #f8f9fa;
+}
+
+button {
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+#feedback {
+    font-size: 18px;
+    margin-top: 15px;
+}
