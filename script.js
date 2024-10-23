@@ -8,7 +8,7 @@ const sentences = [
     { sentence: "Il lit un livre.", words: ["Il", "lit", "un", "livre."] },
     { sentence: "Nous faisons du sport.", words: ["Nous", "faisons", "du", "sport."] },
     { sentence: "Vous aimez le café.", words: ["Vous", "aimez", "le", "café."] },
-    { sentence: "Ils jouent au football.", words: ["Ils", "jouent", "au", "football."] },
+    { sentence: "Ils jouent au foot.", words: ["Ils", "jouent", "au", "foot."] },
     { sentence: "Elle chante une chanson.", words: ["Elle", "chante", "une", "chanson."] },
     { sentence: "Je prends le bus.", words: ["Je", "prends", "le", "bus."] },
     { sentence: "Tu écoutes de la musique.", words: ["Tu", "écoutes", "de", "la", "musique."] },
