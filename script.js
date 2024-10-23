@@ -25,7 +25,7 @@ const sentences = [
     { sentence: "Ils voyagent en train.", words: ["Ils", "voyagent", "en", "train."] },
     { sentence: "Je dessine une maison.", words: ["Je", "dessine", "une", "maison."] },
     { sentence: "Tu joues du piano.", words: ["Tu", "joues", "du", "piano."] },
-    { sentence: "Il travaille viel.", words: ["Il", "travaille", "viel."] },
+    { sentence: "Il travaille beaucoup.", words: ["Il", "travaille", "beaucoup."] },
     { sentence: "Nous allons à la plage.", words: ["Nous", "allons", "à", "la", "plage."] },
     { sentence: "Elle aime les animaux.", words: ["Elle", "aime", "les", "animaux."] },
     { sentence: "Ils lisent un magazine.", words: ["Ils", "lisent", "un", "magazine."] },
